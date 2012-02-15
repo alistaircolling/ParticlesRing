@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<AS3Classpath>
+    <AS3LibraryFolder>libs</AS3LibraryFolder>
+    <AS3LibraryFolder>Flint_4_0_1_swc</AS3LibraryFolder>
+    <AS3Classpath generateProblems="false" sdkBased="true" type="lib" useAsSharedCode="false">frameworks/libs/player/{playerVersion}/playerglobal.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="true" type="lib" useAsSharedCode="false">frameworks/libs/textLayout.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="true" type="lib" useAsSharedCode="false">frameworks/libs/osmf.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="true" type="lib" useAsSharedCode="false">frameworks/libs/authoringsupport.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="true" type="lib" useAsSharedCode="false">frameworks/libs/core.swc</AS3Classpath>
+    <AS3Classpath generateProblems="true" sdkBased="false" type="source" useAsSharedCode="false">src</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">Flint_4_0_1_swc/Flint2d_4.0.1.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">Flint_4_0_1_swc/Flint3d_4.0.1.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">Flint_4_0_1_swc/FlintAlternativa3d_4.0.1.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">Flint_4_0_1_swc/FlintAway3d3_4.0.1.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">Flint_4_0_1_swc/FlintAway3d4_4.0.1.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">Flint_4_0_1_swc/FlintFlare3d_4.0.1.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">Flint_4_0_1_swc/FlintPapervision3d_4.0.1.swc</AS3Classpath>
+    <AS3Classpath generateProblems="true" sdkBased="false" type="source" useAsSharedCode="false">AS3Library</AS3Classpath>
+</AS3Classpath>
