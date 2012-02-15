@@ -69,9 +69,6 @@ package {
 			addInitializer( new ColorInit( 0xff00ccff, 0xff78b1ff ) );
 			//addInitializer( new Lifetime( 1.3 ) );
 			addInitializer( new Velocity( new DiscZone( new Point( 0, 0 ), 600, 500)));//, 0, 0.2 ) ) );
-			//addAction(new DeathZone(new RectangleZone(,500,1000,800)));
-	//		addAction(new CollisionZone(new DiscSectorZone(new Point(0,0),80,80),-100));
-			//addAction(new CollisionZone(new RectangleZone(0,0,300,300),-1));
 			_collisionZone = new CollisionZone(new DiscZone(new Point(500,400), ParticleConstants.CIRCLE_RADIUS+50, ParticleConstants.CIRCLE_RADIUS), -.4); 
 			_innerCollisionZone = new CollisionZone(new DiscZone(new Point(500,400), ParticleConstants.CIRCLE_RADIUS-20, ParticleConstants.CIRCLE_RADIUS-25), 1); 
 			addAction(_collisionZone);
