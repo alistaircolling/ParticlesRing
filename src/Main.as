@@ -48,19 +48,20 @@ package
 		private var _circle : Sprite;
 		private var _bg : Sprite;
 		private var _button : Sprite;
+		private var _topCircle : Sprite;
 		
 		public function Main()
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
 			drawBackground();
-			createCircle();
+		//	createCircle();
 			createButton();
 			
 			emitter = new CatherineWheel();
 
 			var renderer:BitmapRenderer = new BitmapRenderer( new Rectangle( 0, 0, 1000, 800 ) );
-			renderer.addFilter( new BlurFilter( 2, 2, 1 ) );
+			renderer.addFilter( new BlurFilter( 4, 4, 1 ) );
 			renderer.addFilter( new ColorMatrixFilter( [ 1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0.97,0 ] ) );
 			renderer.addEmitter( emitter );
 			addChild( renderer );
@@ -68,6 +69,20 @@ package
 			emitter.x = 500;
 			emitter.y = 400;
 			emitter.start( );
+			
+			drawTopCircle();
+		}
+
+		private function drawTopCircle() : void {
+			
+			_topCircle = new Sprite();
+			_topCircle.graphics.beginFill(0x0,1);
+			_topCircle.graphics.lineStyle(1, 0x0066ff,0, true);
+			_topCircle.graphics.drawCircle(0,0,ParticleConstants.CIRCLE_RADIUS-3);
+			_topCircle.x = 500;
+			_topCircle.y = 400;
+			
+			addChild(_topCircle);
 		}
 
 		private function createButton() : void {

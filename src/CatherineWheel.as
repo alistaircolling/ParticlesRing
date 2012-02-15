@@ -28,27 +28,25 @@
  */
 
 package {
-	import org.flintparticles.twoD.particles.Particle2D;
-	import org.flintparticles.twoD.actions.DeathZone;
-	import org.flintparticles.twoD.actions.Explosion;
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
-	import org.flintparticles.common.counters.TimePeriod;
-	import org.flintparticles.twoD.zones.RectangleZone;
-	import org.flintparticles.twoD.zones.DiscSectorZone;
-	import org.flintparticles.twoD.actions.CollisionZone;
-	import org.flintparticles.twoD.zones.DiscZone;
 	import org.flintparticles.common.counters.Steady;
 	import org.flintparticles.common.displayObjects.Line;
 	import org.flintparticles.common.initializers.ColorInit;
+	import org.flintparticles.common.initializers.Lifetime;
 	import org.flintparticles.common.initializers.SharedImage;
 	import org.flintparticles.twoD.actions.Accelerate;
+	import org.flintparticles.twoD.actions.CollisionZone;
+	import org.flintparticles.twoD.actions.Explosion;
+	import org.flintparticles.twoD.actions.LinearDrag;
 	import org.flintparticles.twoD.actions.Move;
 	import org.flintparticles.twoD.activities.RotateEmitter;
 	import org.flintparticles.twoD.emitters.Emitter2D;
 	import org.flintparticles.twoD.initializers.Velocity;
+	import org.flintparticles.twoD.particles.Particle2D;
+	import org.flintparticles.twoD.zones.DiscZone;
 
+	import flash.events.TimerEvent;
 	import flash.geom.Point;
+	import flash.utils.Timer;
 
 	public class CatherineWheel extends Emitter2D
 	{
@@ -60,29 +58,26 @@ package {
 		
 		public function CatherineWheel()
 		{
-			//counter = new Steady( 200 );
-			//counter = new TimePeriod(100, 1);
 			counter = new Steady(50);
 			addActivity( new RotateEmitter( 7 ) );
 			
-			addInitializer( new SharedImage( new Line( 3 ) ) );
+			addInitializer( new SharedImage( new Line( 30 ) ) );
 			addInitializer( new ColorInit( 0xff00ccff, 0xff78b1ff ) );
-			//addInitializer( new Lifetime( 1.3 ) );
+			addInitializer( new Lifetime( 20 ) );
+			
+			
 			addInitializer( new Velocity( new DiscZone( new Point( 0, 0 ), 600, 500)));//, 0, 0.2 ) ) );
-			_collisionZone = new CollisionZone(new DiscZone(new Point(500,400), ParticleConstants.CIRCLE_RADIUS+50, ParticleConstants.CIRCLE_RADIUS), -.4); 
-			_innerCollisionZone = new CollisionZone(new DiscZone(new Point(500,400), ParticleConstants.CIRCLE_RADIUS-20, ParticleConstants.CIRCLE_RADIUS-25), 1); 
+		//	addInitializer( new Velocity( new DiscZone( new Point( 0, 0 ), 600, 500)));//, 0, 0.2 ) ) );
+			
+			_collisionZone = new CollisionZone(new DiscZone(new Point(500,400), ParticleConstants.CIRCLE_RADIUS+20, ParticleConstants.CIRCLE_RADIUS), -.8); 
 			addAction(_collisionZone);
 			
-			//addAction(_innerCollisionZone);
 			
-		//	addAction( new Age( Quadratic.easeIn ) );
 			addAction( new Move() );
-		//	addAction( new Fade() );
 			addAction( new Accelerate( 0, 0) );
-	//		addAction( new LinearDrag( 0.5 ) );
+			addAction( new LinearDrag( .2 ) );
 			_timer = new Timer(100, 1);
 			_timer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
-			//_timer.start();
 			
 		}
 
@@ -90,15 +85,27 @@ package {
 			trace("CatherineWheel.onTimerComplete(event)  ");
 		//	removeAction(_collisionZone);
 			addAction(_collisionZone);
+		//	addVelocityToAllParticles();
 			_timer.stop();
 		}
 
+		private function addVelocityToAllParticles() : void {
+			var repelAmt:uint = 50;
+			var repelAmtX:uint = 50;
+			for (var i : int = 0; i < particlesArray.length; i++) {
+				var parti:Particle2D = particlesArray[i] as Particle2D;
+			//	parti.collisionRadius = 20;
+				//randomize velocity 
+				parti.velX  += (Math.random()*repelAmtX)-(repelAmtX*.5);
+				parti.velY  += (Math.random()*repelAmt)-(repelAmt*.5);
+			}
+		}
 		public function freeParticles() : void {
 			trace("free particles");
-			removeAction(_collisionZone);
 			//removeVelocityFromParticles();
+			removeAction(_collisionZone);
 			makeAllParticlesRepel();
-			addAction( new Explosion(10, 500, 500));
+			addAction( new Explosion(10, 500, 400));
 			//only for a short time!
 			_timer.start();
 			//now remove the collision radius
@@ -107,10 +114,14 @@ package {
 		}
 
 		private function makeAllParticlesRepel() : void {
+			var repelAmt:uint = 50;
+			var repelAmtX:uint = 50;
 			for (var i : int = 0; i < particlesArray.length; i++) {
 				var parti:Particle2D = particlesArray[i] as Particle2D;
 				parti.collisionRadius = 20;
-				
+				//randomize velocity 
+		//		parti.velX  += (Math.random()*repelAmtX)-(repelAmtX*.5);
+	//			parti.velY  += (Math.random()*repelAmt)-(repelAmt*.5);
 			}
 		}
 
